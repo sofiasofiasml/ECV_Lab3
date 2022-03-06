@@ -3,7 +3,8 @@ var renderer = null;
 var pbrpipeline = null;
 var camera = null;
 var character = null;
-
+var debug_ball = null;
+var walk_area = new WalkArea();
 var anim_idle = null;
 var anim_walk = null;
 var skeleton = new RD.Skeleton();
@@ -62,6 +63,8 @@ function init()
 	character = girl;
 	girl.skeleton = skeleton;
 
+	debug_ball = new RD.SceneNode({mesh:"sprere",shader:"flat",scale:1,color:[1,1,0,1]});
+	scene.root.addChild(debug_ball);
 	anim_idle = new RD.SkeletalAnimation();
 	anim_idle.load("data/girl/idle.skanim");
 	anim_walk = new RD.SkeletalAnimation();
@@ -136,6 +139,7 @@ function init()
 			if( ray.testPlane( RD.ZERO, RD.UP ) ) //collision
 			{
 				console.log( "floor position clicked", ray.collision_point );
+				debug_ball.position = ray.collision_point;
 			}
 		}
 	}
