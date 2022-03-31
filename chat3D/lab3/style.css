@@ -1,0 +1,133 @@
+html, body { 
+    width: 100%; 
+    height: 100%; 
+    margin: 0; 
+    padding: 0 
+}
+#map { 
+    height: 35%; 
+    width: 35%; 
+    position: absolute; 
+    z-index: 3; 
+    border-radius: 20px;
+}
+
+
+#ButtonwrittenArea{
+  z-index: 3; 
+  position: fixed;
+  top: 87%;
+  margin-left:5%;
+  width: 90%;
+  height: 30px;
+}
+
+/* Overlay: AddEvent*/
+
+.popup-AddEvent .overlay-AddEvent
+{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0,0, 0.7);
+  z-index: 1;
+  display: none; 
+}
+.popup-AddEvent  .content-AddEvent
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  background: #fff;
+  width: 70%; 
+  /* height: 420px; */
+  z-index: 2;
+  /* text-align: center; */
+  padding: 20px; 
+  box-sizing: border-box;
+  color: #222;
+  border-radius: 20px;
+} 
+
+.popup-AddEvent  .content-AddEvent h3
+{
+  background: transparent;
+  text-align: center;
+} 
+.popup-AddEvent .close-btn
+{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: #222;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 60;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.popup-AddEvent.active .overlay-AddEvent
+{
+  display: block;
+}
+.popup-AddEvent.active .content-AddEvent
+{
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%,-50%) scale(1);
+
+} 
+
+/*Message*/
+#row-line{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+
+#ButtonwrittenArea{
+  display: inline-block;
+  grid-column: 2/3;
+  width: 150px;
+  top: 90%;
+}
+
+#writtenArea{
+  width: 500px;
+  grid-column: 1/2;
+  margin-left: 250px;
+
+  z-index: 3; 
+  position: fixed;
+  top: 90%;
+  /* width: 90%; */
+  height: 30px;
+  /* margin-left:5%; */
+}
+
+
+#MessageArea{
+  width: 35%; 
+  position: absolute; 
+  z-index: 4; 
+  border-radius: 20px;
+  margin-left: 60%;
+  padding: 20px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+.username{
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.cont{
+  text-transform: capitalize;
+}

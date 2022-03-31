@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link type="text/css" rel="stylesheet" media="all" href="style.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+	<title>ECV</title>
+	<script type="text/javascript" src="js/extra/gl-matrix-min.js"></script>
+	<script type="text/javascript" src="js/extra/litegl.js"></script>
+	<script type="text/javascript" src="js/extra/rendeer.js"></script>
+	<script type="text/javascript" src="js/extra/wbin.js"></script>
+	<script type="text/javascript" src="js/extra/walkArea.js"></script>
+	<script type="text/javascript" src="js/webSpeech.js"></script>
+	
+    
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+</head>
+<body>
+	<div class="container" style="display:none">    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Sign In</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
+                    </div>     
+
+                    <div style="padding-top:30px" class="panel-body" >
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+                        <form id="loginform" class="form-horizontal" role="form">
+                                    
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+                                    </div>
+                                
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                                    </div>
+                                    
+
+                            <div class="info" style="padding-top:5px; font-size:85%; color:red"></div>
+                            <div class="input-group">
+                                      <div class="checkbox">
+                                        <label>
+                                          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                                        </label>
+                                      </div>
+                                    </div>
+
+
+                                <div style="margin-top:10px" class="form-group">
+                                    <!-- Button -->
+
+                                    <div class="col-sm-12 controls">
+                                      <a id="btn-login" href="#" class="btn btn-success" onClick="CORE.login()">Login  </a>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-12 control">
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                            Don't have an account! 
+                                        <a href="#" onClick="onHide(query('#loginbox')); Show(query('#signupbox'))">
+                                            Sign Up Here
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </form>     
+
+
+
+                        </div>                     
+                    </div>  
+        </div>
+        <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Sign Up</div>
+                            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href='#' onClick="onHide(query('#signupbox')); Show(query('#loginbox'))">Sign In</a></div>
+                        </div>  
+                        <div class="panel-body" >
+                            <form id="signupform" class="form-horizontal" role="form">
+                                
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                                    
+                                
+                                  
+                                <div class="form-group">
+                                    <label for="username" class="col-md-3 control-label" >Username</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="username"id="username_reg" placeholder="Username">
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <label for="firstname" class="col-md-3 control-label">First Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="firstname" id="name_reg" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname" class="col-md-3 control-label">Last Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="lastname" id="lastname_reg"  placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">Password</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="passwd" id="password_reg" placeholder="Password">
+                                    </div>
+                                </div>
+                                    
+                                <div class="info2" style="padding-top:5px; font-size:85%; color:red"></div>
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="button" class="btn btn-info" onClick="CORE.signup()"><i class="icon-hand-right" ></i> &nbsp Sign Up</button>
+                                        
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                
+                            </form>
+                         </div>
+                    </div> 
+         </div> 
+    </div>
+
+<div id="MessageArea" style="display: none;"></div>
+
+<div id="log"></div>
+	<div class="popup-AddEvent" id="popup-AddEvent">
+		<div class="overlay-AddEvent"></div>
+		<div class="content-AddEvent">
+			<div class="close-btn" onclick="togglePopup()">&times</div>
+			<div id="Description_overlay"></div>
+		</div>
+	</div>
+	<div id="map" style="display:none"></div>
+<div id="row-line">
+    <button id="ButtonwrittenArea" style="display:none" onclick="hidenTextArea()">Ocultar Escribir</button>
+    <input type="text" style="display:none" id="writtenArea">
+</div>
+
+
+    <script type="text/javascript" src="js/code.js"></script>
+	<script type="text/javascript" src="js/maps.js"></script>
+	<script src="js/core.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/logic.js"></script>
+	<script src="js/world.js"></script>
+	<script src="js/client.js"></script>
+	<script>CORE.init()</script>
+</body>
+</html>
